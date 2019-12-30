@@ -1,16 +1,15 @@
 <<<<<<< HEAD
 Nouveau pool dédié à la blockchain Lisk
-Bash, SQL et un peu de Python sont utilisés
-=======
-# lisk-basic-pool
 Some bash, some SQL, some Python. Very few lines !
+=======
 
 # Pré-requis et installation
 développé et testé sur Linux Debian 9,
 Installer un node lisk,
 Avec le même utilisateur que celui qui fait fonctionner le node Lisk, copier les fichiers lisk-basic-pool dans un répertoire indépendant de votre installation lisk
 Modifier les paramètres, dans le fichier pgsql2sqlite.sh
-Lancer pgsql2sqlite.sh
+Lancer manuellement 'sh pgsql2sqlite.sh' 
+Inscrivez ce script en crontab.. 
 
 # Fonctionnement
 Des données sont extraites de la base Postgresql utilisée par Lisk,
