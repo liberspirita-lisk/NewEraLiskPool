@@ -8,7 +8,7 @@ développé et testé sur Linux Debian 9,
 Installer un node lisk,
 Avec le même utilisateur que celui qui fait fonctionner le node Lisk, copier les fichiers lisk-basic-pool dans un répertoire indépendant de votre installation lisk
 Modifier les paramètres, dans le fichier pgsql2sqlite.sh
-Lancer manuellement 'sh pgsql2sqlite.sh' 
+Lancer manuellement 'bash pgsql2sqlite.sh' 
 Inscrivez ce script en crontab.. 
 
 # Fonctionnement
