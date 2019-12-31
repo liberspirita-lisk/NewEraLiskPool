@@ -7,7 +7,7 @@ cd $path_pool
 
 # Extraction des votants 
 for elem in "${pubkey[@]}" ; do
-$path_psql"psql" -d lisk_main -t -A -F"," -c " SELECT t1.\"dependentId\", t2.\"username\",t2.\"address\",t2.\"publicKey\", t2.\"balance\" power 
+$path_psql"psql" -d $psql_db -t -A -F"," -c " SELECT t1.\"dependentId\", t2.\"username\",t2.\"address\",t2.\"publicKey\", t2.\"balance\" power 
 from mem_accounts2delegates t1 
 join mem_accounts t2 on t2.\"address\" = t1.\"accountId\" where t1.\"dependentId\"='$elem' and  t2.\"balance\" > $min_balance 
 order by t2.\"balance\" desc" >> $path_pool"voters.csv"
@@ -16,7 +16,7 @@ done
 
 # Extraction des données delegate
 for elem in "${pubkey[@]}" ; do
-$path_psql"psql" -d lisk_main -t -A -F"," -c "select \"username\",\"address\",\"publicKey\",\"balance\",\"rank\" from \"mem_accounts\" where \"publicKey\" = '\\x$elem'" >> $path_pool"delegates.csv"
+$path_psql"psql" -d $psql_db -t -A -F"," -c "select \"username\",\"address\",\"publicKey\",\"balance\",\"rank\" from \"mem_accounts\" where \"publicKey\" = '\\x$elem'" >> $path_pool"delegates.csv"
 done
 
 # Reprise de respiration

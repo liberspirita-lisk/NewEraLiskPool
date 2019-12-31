@@ -29,6 +29,6 @@ DELETE FROM voters where  address not in (select address from voters_raw);
 UPDATE voters_raw SET power = min(power,100000*100000000) ;
 UPDATE voters SET scoring = (SELECT total(voters_raw.power) from voters_raw WHERE voters_raw.address=voters.address GROUP BY voters_raw.address) ;
 
-update voters set pending_payouts = pending_payouts+ ((scoring / (select total(scoring) from voters)) * ((select total(balance) from delegates where address='2004134067472288525L')-(select total(pending_payouts) from voters ))); 
+update voters set pending_payouts = pending_payouts+ ((scoring / (select total(scoring) from voters)) * ((select total(balance) from delegates where address='3897910504949673529L')-(select total(pending_payouts) from voters ))); 
 
 
