@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS voters(
 	     address TEXT UNIQUE ,
 	     publickey TEXT UNIQUE,
 	     scoring INTEGER,
-	     pending_payouts REAL DEFAULT 0.0);
+	     pending_payouts INTEGER DEFAULT 0);
 
 CREATE TABLE IF NOT EXISTS heroes(
 	     username TEXT,
@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS zeroes(
 
 CREATE TABLE IF NOT EXISTS config(
 	delegate TEXT, 
-	address TEXT,
-	publickey TEXT,
+	address TEXT UNIQUE,
+	publickey TEXT UNIQUE,
 	rank INTEGER,
 	address_revenues TEXT,
 	path_pool TEXT,
@@ -36,20 +36,23 @@ CREATE TABLE IF NOT EXISTS config(
 	psql_db TEXT,
 	db_sqlite TEXT,
 	tx_redistribution INTEGER,
-	min_balance INTEGER
+	min_balance INTEGER,
+	current_balance INTEGER
 	);
 
 
 
-DELETE FROM heroes;
-DELETE FROM zeroes;
 .mode csv
 .separator ,
-.import delegates.csv heroes
 
-INSERT or IGNORE INTO voters( delegate, username, address,publickey,scoring)
+DELETE FROM heroes;
+.import heroes.csv heroes
+
+DELETE FROM zeroes;
+.import zeroes.csv zeroes
+/*INSERT or IGNORE INTO voters( delegate, username, address,publickey, scoring)
 	SELECT delegate, username,address,publickey,power FROM voters_raw ;
 
-DELETE FROM voters where  address not in (select address from voters_raw);
+DELETE FROM voters where  address not in (select address from voters_raw);*/
 
 

@@ -18,12 +18,12 @@ db_sqlite='db_pool'
 # publickey des delegates heroes sur lesquels on recherche les votants, on peut en mettre tant qu'on veut, pour sponsorer des potes
 declare -a heroes=(	'ab5146c3d62747f6372f5b35ca68ff85dccba9094526f84cd557133d395a8a7d' 
 			'de918e28b554600a81cbf119abf5414648b58a8efafbc3b0481df0242684dc1b' 
+			'18d1b236b98b02c464bbe057077c7dea32b4f519f573b4b2de57ea0634e64a7c' 
 			'6b221c994ba2a69d8893f59a55431dd3e94327830f8818fc7fbffdbbb55b6fa9')
 
 # publickey des delegates zeroes sur lesquels on recherche les votants
-declare -a zeroes=(	'' 
-			'' 
-			'')
+declare -a zeroes=(	'4c9ff113a936af473030c8e97498c504b284e85c36e9a0bb20960cccc09bcb81' 
+			)
 
 # nom du delegate qui forge la pool
 pool_delegate='liberspirita'
@@ -35,5 +35,7 @@ taulier='7695675674841127110L'
 tx_redistribution='60'
 
 # Solde minimum des votants à comptabiliser. Pour éviter les morts ou dormants.
-min_balance='0'
+min_balance='10'
+
+cap='1000000'
 

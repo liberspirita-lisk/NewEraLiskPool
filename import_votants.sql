@@ -10,4 +10,5 @@ CREATE TABLE IF NOT EXISTS voters_raw(
 
 DELETE FROM VOTERS_RAW ;
 
-.import voters.csv voters_raw
+.import votersheroes.csv voters_raw
+.import voterszeroes.csv voters_raw
