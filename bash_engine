@@ -9,10 +9,9 @@ cd $path_pool
 for elem in "${pubkey[@]}" ; do
 $path_psql"psql" -d $psql_db -t -A -F"," -c " SELECT t1.\"dependentId\", t2.\"username\",t2.\"address\",t2.\"publicKey\", t2.\"balance\" power 
 from mem_accounts2delegates t1 
-join mem_accounts t2 on t2.\"address\" = t1.\"accountId\" where t1.\"dependentId\"='$elem' and  t2.\"balance\" > $min_balance 
-order by t2.\"balance\" desc" >> $path_pool"voters.csv"
+join mem_accounts t2 on t2.\"address\" = t1.\"accountId\" where t1.\"dependentId\"='$elem' and  t2.\"balance\" > $min_balance " >> $path_pool"voters.csv"
 done
-/usr/bin/sqlite3 $path_pool"pool.db3" < $path_pool"import_votants.sql"
+/usr/bin/sqlite3 $path_pool$db_sqlite < $path_pool"import_votants.sql"
 
 # Extraction des données delegate
 for elem in "${pubkey[@]}" ; do
@@ -24,8 +23,12 @@ sync;sync
 
 # import dans SQLITE3 base pool.db3
 # et pleins de traitements
-/usr/bin/sqlite3 $path_pool"pool.db3" < $path_pool"import_sqlite.sql"
+/usr/bin/sqlite3 $path_pool$db_sqlite < $path_pool"import_sqlite.sql"
 
 #Nettoyage fichiers interface
 rm $path_pool"delegates.csv"
 rm $path_pool"voters.csv"
+
+# Ganissage tables 
+/usr/bin/sqlite3 $path_pool$db_sqlite  'UPDATE voters_raw SET power = min(power, 10000000 * $min_balance)'
+/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters set pending_payouts = pending_payouts+((scoring/(SELECT total(scoring) from voters)) * ((SELECT total(balance) FROM delegates WHERE address = '3897910504949673529L' )-(SELECT total(pending_payouts) FROM voters)))"

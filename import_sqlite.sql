@@ -15,7 +15,34 @@ CREATE TABLE IF NOT EXISTS delegates(
 	     rank INTEGER,
 	     UNIQUE (address,publickey)    
 	    );
-	
+
+CREATE TABLE IF NOT EXISTS config(
+	delegate TEXT, 
+	address TEXT,
+	publickey TEXT,
+	rank INTEGER,
+	address_revenues TEXT,
+	path_pool TEXT,
+	patch_psql TEXT,
+	psql_db TEXT,
+	tx_redistribution INTEGER,
+	min_balance INTEGER
+	);
+
+CREATE TABLE IF NOT EXISTS heroes(
+	delegate TEXT, 
+	address TEXT,
+	publickey TEXT,
+	rank INTEGER
+	);
+
+CREATE TABLE IF NOT EXISTS zeroes(
+	delegate TEXT, 
+	address TEXT,
+	publickey TEXT,
+	rank INTEGER
+	);
+
 DELETE FROM delegates ;
 .mode csv
 .separator ,
@@ -26,9 +53,8 @@ INSERT or IGNORE INTO voters( delegate, username, address,publickey,scoring)
 
 DELETE FROM voters where  address not in (select address from voters_raw);
 
-UPDATE voters_raw SET power = min(power,100000*100000000) ;
-UPDATE voters SET scoring = (SELECT total(voters_raw.power) from voters_raw WHERE voters_raw.address=voters.address GROUP BY voters_raw.address) ;
+/*UPDATE voters SET scoring = (SELECT total(voters_raw.power) from voters_raw WHERE voters_raw.address=voters.address GROUP BY voters_raw.address) ;*/
 
-update voters set pending_payouts = pending_payouts+ ((scoring / (select total(scoring) from voters)) * ((select total(balance) from delegates where address='3897910504949673529L')-(select total(pending_payouts) from voters ))); 
+/*update voters set pending_payouts = pending_payouts+ ((scoring / (select total(scoring) from voters)) * ((select total(balance) from delegates where address='3897910504949673529L')-(select total(pending_payouts) from voters ))); */
 
 
