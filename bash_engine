@@ -30,5 +30,12 @@ rm $path_pool"delegates.csv"
 rm $path_pool"voters.csv"
 
 # Ganissage tables 
+/usr/bin/sqlite3 $path_pool$db_sqlite  "INSERT or REPLACE INTO config(delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite) 
+VALUES ('$pool_delegate'
+		, (SELECT address from delegates where delegates.username='$pool_delegate')
+		, (SELECT publickey from delegates where delegates.username='$pool_delegate')
+		, (SELECT rank from delegates where delegates.username='$pool_delegate')
+		, '$taulier', '$path_pool','$path_psql','$psql_db','$tx_redistribution','$min_balance','$db_sqlite')"
 /usr/bin/sqlite3 $path_pool$db_sqlite  'UPDATE voters_raw SET power = min(power, 10000000 * $min_balance)'
-/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters set pending_payouts = pending_payouts+((scoring/(SELECT total(scoring) from voters)) * ((SELECT total(balance) FROM delegates WHERE address = '3897910504949673529L' )-(SELECT total(pending_payouts) FROM voters)))"
+/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters set pending_payouts = pending_payouts+((scoring/(SELECT total(scoring) from voters)) * ((SELECT total(balance) 
+		FROM delegates WHERE address = '3897910504949673529L' )-(SELECT total(pending_payouts) FROM voters)))"

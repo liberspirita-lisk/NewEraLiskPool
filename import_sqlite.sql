@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS config(
 	rank INTEGER,
 	address_revenues TEXT,
 	path_pool TEXT,
-	patch_psql TEXT,
+	path_psql TEXT,
 	psql_db TEXT,
+	db_sqlite TEXT,
 	tx_redistribution INTEGER,
 	min_balance INTEGER
 	);
