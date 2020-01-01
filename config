@@ -34,8 +34,8 @@ taulier='7695675674841127110L'
 #taux de redistribution aux poolers
 tx_redistribution='60'
 
-# Solde minimum des votants à comptabiliser. Pour éviter les morts ou dormants.
-min_balance='10'
-
-cap='1000000'
+# Solde minimum des votants à comptabiliser. En LSK00000000 Pour éviter les morts ou dormants.
+min_balance='1000000000'
+# Cap des whales, en LSK00000000
+cap='10000000000000'
 

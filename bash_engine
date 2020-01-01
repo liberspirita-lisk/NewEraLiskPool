@@ -52,7 +52,7 @@ rm $path_pool'voterszeroes.csv'
 		, (SELECT balance from heroes where heroes.username='$pool_delegate'))"
 
 # plafonnement comptes poolers
-/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power, 100000000 * $cap)"
+/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap)"
 # malus sur votes zeroes
 /usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters_raw  set power = power *(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
 
@@ -61,6 +61,12 @@ rm $path_pool'voterszeroes.csv'
 						SELECT delegate, username, address, publickey, power FROM voters_raw '
 
 /usr/bin/sqlite3 $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
+
+# Calcul scoring du taulier
+/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters set scoring = max(
+					((100-$tx_redistribution)/100) *
+					(select sum(scoring) from voters where address != '$taulier'), scoring) 
+					where address='$taulier' "
 
 # calcul pending_payout
 /usr/bin/sqlite3 $path_pool$db_sqlite  'UPDATE voters set pending_payouts = pending_payouts+
