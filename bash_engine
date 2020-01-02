@@ -2,28 +2,24 @@
 
 source config
 cd $path_pool
-echo 1
 # Extraction des votants heroes 
 for elem in "${heroes[@]}" ; do
 	$path_psql"psql" -d $psql_db -t -A -F"," -c " SELECT t1.\"dependentId\", t2.\"username\",t2.\"address\",t2.\"publicKey\", t2.\"balance\" power 
 	from mem_accounts2delegates t1 
 	join mem_accounts t2 on t2.\"address\" = t1.\"accountId\" where t1.\"dependentId\"='$elem' and  t2.\"balance\" > $min_balance " >> $path_pool"votersheroes.csv"
 done
-echo 2
 # Extraction des votants zeroes 
 for elem in "${zeroes[@]}" ; do
 	$path_psql"psql" -d $psql_db -t -A -F"," -c " SELECT t1.\"dependentId\", t2.\"username\",t2.\"address\",t2.\"publicKey\", t2.\"balance\" power 
 	from mem_accounts2delegates t1 
 	join mem_accounts t2 on t2.\"address\" = t1.\"accountId\" where t1.\"dependentId\"='$elem' and  t2.\"balance\" > $min_balance " >> $path_pool"voterszeroes.csv"
 done
-echo 3
 /usr/bin/sqlite3 $path_pool$db_sqlite < $path_pool"import_votants.sql"
 
 # Extraction des données delegate heroes
 for elem in "${heroes[@]}" ; do
 	$path_psql"psql" -d $psql_db -t -A -F"," -c "select \"username\",\"address\",\"publicKey\",\"balance\",\"rank\" from \"mem_accounts\" where \"publicKey\" = '\\x$elem'" >> $path_pool"heroes.csv"
 done
-echo 4
 
 # Extraction des données delegate zeroes
 for elem in "${zeroes[@]}" ; do
