@@ -56,7 +56,7 @@ rm $path_pool'voterszeroes.csv'
 
 # garnissage voters 
 /usr/bin/sqlite3 $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
-						SELECT delegate, username, address, publickey, power FROM voters_raw '
+SELECT delegate, username, address, publickey, total(power) FROM voters_raw group by delegate, username, address, publickey'
 
 /usr/bin/sqlite3 $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
 
