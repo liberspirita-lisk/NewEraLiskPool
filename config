@@ -29,13 +29,20 @@ declare -a zeroes=(	'4c9ff113a936af473030c8e97498c504b284e85c36e9a0bb20960cccc09
 pool_delegate='liberspirita'
 
 # Adresse du patron de la pool, qui recevra les gains hors redistribution. Ce compte doit voter la pool pour que ça marche
-taulier='7695675674841127110L'
+taulier='16387939607525205671L'
 
 #taux de redistribution aux poolers
 tx_redistribution='60'
 
 # Solde minimum des votants à comptabiliser. En LSK00000000 Pour éviter les morts ou dormants.
 min_balance='1000000000'
+
 # Cap des whales, en LSK00000000
 cap='10000000000000'
 
+# Seuil de paiment
+payout_seuil='200000000'
+
+# phrase(s) secrète(s) du compte payeur
+secret1="reject grocery diet dawn impose old dad note coral brief wage earth"
+secret2=""

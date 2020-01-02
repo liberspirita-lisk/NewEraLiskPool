@@ -37,7 +37,10 @@ CREATE TABLE IF NOT EXISTS config(
 	db_sqlite TEXT,
 	tx_redistribution INTEGER,
 	min_balance INTEGER,
-	current_balance INTEGER
+	current_balance INTEGER,
+	payout_seuil REAL,
+	secret1 TEXT,
+	secret2 TEXT
 	);
 
 

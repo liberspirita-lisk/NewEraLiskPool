@@ -39,13 +39,15 @@ rm $path_pool'voterszeroes.csv'
 
 # Ganissage tables
 # table config
-/usr/bin/sqlite3 $path_pool$db_sqlite  "INSERT or REPLACE INTO config (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance) 
+/usr/bin/sqlite3 $path_pool$db_sqlite  "INSERT or REPLACE INTO config (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance,payout_seuil, secret1,secret2) 
 		VALUES ('$pool_delegate'
 		, (SELECT address from heroes where heroes.username='$pool_delegate')
 		, (SELECT publickey from heroes where heroes.username='$pool_delegate')
 		, (SELECT rank from heroes where heroes.username='$pool_delegate')
 		, '$taulier', '$path_pool','$path_psql','$psql_db','$tx_redistribution','$min_balance','$db_sqlite'
-		, (SELECT balance from heroes where heroes.username='$pool_delegate'))"
+		, (SELECT balance from heroes where heroes.username='$pool_delegate')
+		, $payout_seuil
+		, '$secret1', '$secret2')"
 
 # plafonnement comptes poolers
 /usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap)"
