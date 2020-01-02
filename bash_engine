@@ -64,7 +64,7 @@ rm $path_pool'voterszeroes.csv'
 
 # Calcul scoring du taulier
 /usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters set scoring = max(
-					((100-$tx_redistribution)/100) *
+					((100-$tx_redistribution)*0.01) *
 					(select sum(scoring) from voters where address != '$taulier'), scoring) 
 					where address='$taulier' "
 
