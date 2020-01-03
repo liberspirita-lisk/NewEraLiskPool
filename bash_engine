@@ -29,7 +29,7 @@ done
 
 # import dans SQLITE3 base pool.db3
 # et quelques traitements
-/usr/bin/sqlite3 $path_pool$db_sqlite < $path_pool"import_sqlite.sql"
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite < $path_pool"import_sqlite.sql"
 
 # Nettoyage fichiers interface
 rm $path_pool'heroes.csv'
@@ -39,7 +39,7 @@ rm $path_pool'voterszeroes.csv'
 
 # Ganissage tables
 # table config
-/usr/bin/sqlite3 $path_pool$db_sqlite  "INSERT or REPLACE INTO config (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance,payout_seuil, secret1,secret2) 
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "INSERT or REPLACE INTO config (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance,payout_seuil, secret1,secret2) 
 		VALUES ('$pool_delegate'
 		, (SELECT address from heroes where heroes.username='$pool_delegate')
 		, substr((SELECT publickey from heroes where heroes.username='$pool_delegate'),3,100)
@@ -50,24 +50,26 @@ rm $path_pool'voterszeroes.csv'
 		, '$secret1', '$secret2')"
 
 # plafonnement comptes poolers
-/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap)"
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap)"
 # malus sur votes zeroes
-/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters_raw  set power = power *(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power *(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
 
 # garnissage voters 
-/usr/bin/sqlite3 $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
 SELECT delegate, username, address, publickey, total(power) FROM voters_raw group by delegate, username, address, publickey'
 
-/usr/bin/sqlite3 $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
 
 # Calcul scoring du taulier
-/usr/bin/sqlite3 $path_pool$db_sqlite  "UPDATE voters set scoring = max(
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = max(
 					((100-$tx_redistribution)*0.01) *
 					(select sum(scoring) from voters where address != '$taulier'), scoring) 
 					where address='$taulier' "
 
 # calcul pending_payout
-/usr/bin/sqlite3 $path_pool$db_sqlite  'UPDATE voters set pending_payouts = pending_payouts+
-		((scoring / (SELECT total(scoring) from voters)) 
-			* (SELECT total(current_balance) FROM config   )
-		-(SELECT total(pending_payouts) FROM voters))'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE voters set pending_payouts = pending_payouts+
+		cast(((scoring / (SELECT sum(scoring) from voters)) 
+			* ((SELECT sum(current_balance) FROM config)
+			-(SELECT sum(pending_payouts) FROM voters))) as int)'
+cd $path_pool
+/usr/bin/php test_index.php

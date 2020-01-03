@@ -32,16 +32,16 @@ pool_delegate='liberspirita'
 taulier='16387939607525205671L'
 
 #taux de redistribution aux poolers
-tx_redistribution='60'
+tx_redistribution='90'
 
 # Solde minimum des votants à comptabiliser. En LSK00000000 Pour éviter les morts ou dormants.
-min_balance='1000000000'
+min_balance='100000000000'
 
 # Cap des whales, en LSK00000000
-cap='10000000000000'
+cap='500000000000000'
 
 # Seuil de paiment
-payout_seuil='200000000'
+payout_seuil='100000000'
 
 # phrase(s) secrète(s) du compte payeur
 secret1="reject grocery diet dawn impose old dad note coral brief wage earth"
