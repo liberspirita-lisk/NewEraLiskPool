@@ -51,7 +51,8 @@ rm $path_pool'voterszeroes.csv'
 
 # plafonnement comptes poolers
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap)"
-# malus sur votes zeroes
+
+# scoring négatif sur votes zeroes
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power *(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
 
 # garnissage voters 
