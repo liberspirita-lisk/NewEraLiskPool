@@ -23,6 +23,8 @@ declare -a heroes=(	'ab5146c3d62747f6372f5b35ca68ff85dccba9094526f84cd557133d395
 
 # publickey des delegates zeroes sur lesquels on recherche les votants
 declare -a zeroes=(	'4c9ff113a936af473030c8e97498c504b284e85c36e9a0bb20960cccc09bcb81' 
+			'8f683661c90c3aaf5e1ca826fd834af53c9c6eefde1e538a191f68ba277b849a'
+			'3697a4f8c74cb21949eec31fddde190c16ab2497709fb503c567d3a9e6a6e989'
 			)
 
 # nom du delegate qui forge la pool
@@ -32,7 +34,7 @@ pool_delegate='liberspirita'
 taulier='16387939607525205671L'
 
 #taux de redistribution aux poolers
-tx_redistribution='90'
+tx_redistribution='98'
 
 # Solde minimum des votants à comptabiliser. En LSK00000000 Pour éviter les morts ou dormants.
 min_balance='100000000000'
@@ -41,7 +43,7 @@ min_balance='100000000000'
 cap='500000000000000'
 
 # Seuil de paiment
-payout_seuil='100000000'
+payout_seuil='10000000'
 
 # phrase(s) secrète(s) du compte payeur
 secret1="reject grocery diet dawn impose old dad note coral brief wage earth"

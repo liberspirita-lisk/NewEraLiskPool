@@ -61,15 +61,14 @@ SELECT delegate, username, address, publickey, total(power) FROM voters_raw grou
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
 
 # Calcul scoring du taulier
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = max(
-					((100-$tx_redistribution)*0.01) *
-					(select sum(scoring) from voters where address != '$taulier'), scoring) 
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = 
+					((100-$tx_redistribution)*0.01) *(select sum(scoring) from voters where address != '$taulier') 
 					where address='$taulier' "
 
 # calcul pending_payout
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE voters set pending_payouts = pending_payouts+
-		cast(((scoring / (SELECT sum(scoring) from voters)) 
+		((scoring / (SELECT sum(scoring) from voters)) 
 			* ((SELECT sum(current_balance) FROM config)
-			-(SELECT sum(pending_payouts) FROM voters))) as int)'
+			-(SELECT sum(pending_payouts) FROM voters))) '
 cd $path_pool
-/usr/bin/php test_index.php
+/usr/bin/php pay.php
