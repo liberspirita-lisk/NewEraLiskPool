@@ -42,7 +42,7 @@ rm $path_pool'voterszeroes.csv'
 /usr/bin/sqlite3 $path_pool$db_sqlite  "INSERT or REPLACE INTO config (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance,payout_seuil, secret1,secret2) 
 		VALUES ('$pool_delegate'
 		, (SELECT address from heroes where heroes.username='$pool_delegate')
-		, (SELECT publickey from heroes where heroes.username='$pool_delegate')
+		, substr((SELECT publickey from heroes where heroes.username='$pool_delegate'),3,100)
 		, (SELECT rank from heroes where heroes.username='$pool_delegate')
 		, '$taulier', '$path_pool','$path_psql','$psql_db','$tx_redistribution','$min_balance','$db_sqlite'
 		, (SELECT balance from heroes where heroes.username='$pool_delegate')
