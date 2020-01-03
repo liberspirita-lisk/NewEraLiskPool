@@ -56,19 +56,18 @@ rm $path_pool'voterszeroes.csv'
 
 # garnissage voters 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
-SELECT delegate, username, address, publickey, total(power) FROM voters_raw group by delegate, username, address, publickey'
+SELECT delegate, username, address, publickey, cast(total(power) as int) FROM voters_raw group by delegate, username, address, publickey'
 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
-
 # Calcul scoring du taulier
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = 
-					((100-$tx_redistribution)*0.01) *(select sum(scoring) from voters where address != '$taulier') 
+((100-$tx_redistribution)*0.01) *(select cast(total(scoring)as int)  from voters where address != '$taulier')
 					where address='$taulier' "
 
 # calcul pending_payout
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE voters set pending_payouts = pending_payouts+
-		((scoring / (SELECT sum(scoring) from voters)) 
-			* ((SELECT sum(current_balance) FROM config)
-			-(SELECT sum(pending_payouts) FROM voters))) '
+((scoring / (SELECT total(scoring) from voters)) 
+			* ((SELECT total(current_balance) FROM config)
+			-(SELECT total(pending_payouts)  FROM voters)))'
 cd $path_pool
 /usr/bin/php pay.php
