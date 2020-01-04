@@ -37,4 +37,6 @@ When confident, you'd better add a crontab line, like this for every hour each 5
 
 5 * * * * cd /home/lisk/lisk-basic-pool && /bin/bash /home/lisk/lisk-basic-pool/bash_engine > /home/lisk/lisk-basic-pool/logs.log 2>&1
 
-
+### Public web site
+Install any web server with PHP capabilities (nginx, apache2, etc.)
+restrict the web site to the directory 'public'

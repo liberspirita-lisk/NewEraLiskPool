@@ -42,9 +42,12 @@ min_balance='100000000000'
 # Cap des whales, en LSK00000000
 cap='50000000000000'
 
+# Bonus des whales, au dessus du cap. En pourcentage
+cap_above='1'
+
 # Seuil de paiment
-payout_seuil='100000000'
+payout_seuil='110000000'
 
 # phrase(s) secrète(s) du compte payeur
-secret1="passphrase1"
+secret1="reject grocery diet dawn impose old dad note coral brief wage earth"
 secret2=""
