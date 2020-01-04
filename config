@@ -43,6 +43,7 @@ declare -a zeroes=(
 	'76c321881c08b0c2f538abf753044603ab3081f5441fe069c125a6e2803015da' 
 	'e36f75a27598512c2f4ad06fffeeffa37d3aad81c3a4edb77d871ec0ee933471' 
 	'ec111c8ad482445cfe83d811a7edd1f1d2765079c99d7d958cca1354740b7614' 
+	'00de7d28ec3f55f42329667f08352d0d90faa3d2d4e62c883d86d1d7b083dd7c' 
 			)
 
 # nom du delegate qui forge la pool
@@ -61,9 +62,9 @@ payout_seuil='210000000'
 min_balance='100000000000'
 
 # cap des whales, en LSK00000000
-cap='15000000000000'
+cap='10000000000000'
 # Bonus des whales, au dessus du cap. En pourcentage
-cap_above='1'
+cap_above='2'
 
 # phrase(s) secrète(s) du compte payeur
 secret1="passphrase"
