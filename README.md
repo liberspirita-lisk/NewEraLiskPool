@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-Nouveau pool dédié à la blockchain Lisk
+< HEAD
+A new pool for Lisk for a new era of Lisk
 Some BASH, some SQL, some PHP. Very few lines !
 =======
 
@@ -12,11 +12,11 @@ This script has been coded and tested on Debian9. Installation process should be
 see "https://lisk.io/documentation/lisk-core/setup/binary.html"
 
 ###Install various softs as sqlite3, php, nginx 
-'''sh
+
 	apt-get install sqlite3 php nginx
 
 ###git clone this repository in the home of lisk user, but not in lisk node directory
-'''sh
+
 	git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
 	cd NewEraLiskPool
 
@@ -27,11 +27,11 @@ see "https://github.com/thepool-io/lisk-php"
 ###edit the file 'config'
 ### edit or create a hidden file .sqliterc in your home
 with this inside :
-'''sh
+
 .mode column
 .headers on
 ### Launch the script 
-'''sh
+
 	bash bash_engine
 When confident, you'd better add a crontab line, like this for every hour each 5:
 
