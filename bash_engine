@@ -53,13 +53,16 @@ rm $path_pool'voterszeroes.csv'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap+( power * $cap_above  /100 )) "
 
 # scoring négatif sur votes zeroes
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power *(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power /(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power /1  where delegate in (select distinct substr(publickey,3,100) from heroes) "
 
 # garnissage voters 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE from tempo;'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT INTO tempo (address,pending_payouts) SELECT address,pending_payouts from voters'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
-						SELECT delegate, username, address, publickey, cast(total(power) as int) FROM voters_raw group by delegate, username, address, publickey '
+						SELECT delegate, username, address, publickey, cast(total(power) as real) FROM voters_raw group by delegate, username, address, publickey '
+
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE voters SET scoring = (SELECT cast(total(power) as real) from voters_raw where voters_raw.address=voters.address)'
 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set pending_payouts = 
 	CASE WHEN (select tempo.address from tempo where tempo.address=voters.address ) IS NULL
