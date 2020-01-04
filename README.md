@@ -1,17 +1,36 @@
 <<<<<<< HEAD
 Nouveau pool dédié à la blockchain Lisk
-Some bash, some SQL, some Python. Very few lines !
+Some BASH, some SQL, some PHP. Very few lines !
 =======
 
 # Pré-requis et installation
-développé et testé sur Linux Debian 9,
-Installer un node lisk,
-Avec le même utilisateur que celui qui fait fonctionner le node Lisk, copier les fichiers lisk-basic-pool dans un répertoire indépendant de votre installation lisk
-Modifier les paramètres, dans le fichier pgsql2sqlite.sh
-Lancer manuellement 'bash pgsql2sqlite.sh' 
-Inscrivez ce script en crontab.. 
+This script has been coded and tested on Debian9. Installation process should be similar on any debian like linux distribution.
 
-# Fonctionnement
+##Steps are :
+
+###Install a lisk node
+see "https://lisk.io/documentation/lisk-core/setup/binary.html"
+
+###Install various softs as sqlite3, php, nginx 
+'''sh
+apt-get install sqlite3 php nginx
+
+###git clone this repository in the home of lisk user, but not in lisk node directory
+'''sh
+git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
+cd NewEraLiskPool
+
+###Install lisk-php here, be carefull to install also all its dependencies
+see "https://github.com/thepool-io/lisk-php" 
+
+## Set your configuration
+###edit the file 'config'
+### edit or create a hidden file .sqliterc in your home
+with this inside :
+'''sh
+.mode column
+.headers on
+# 
 Des données sont extraites de la base Postgresql utilisée par Lisk,
 puis insérées et remodelées sur une base SQLite
 Le solde du compte pool est évalué, comparé aux paiements en attente de chaque pooler. Puis le reliquat du solde est réparti sur chaque pooler.
