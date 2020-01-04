@@ -4,12 +4,13 @@ Some BASH, some SQL, some PHP. Very few lines !
 =======
 
 # Pré-requis et installation
-This script has been coded and tested on Debian9. Installation process should be similar on any debian like linux distribution.
+This script has been coded and tested on Debian9, using mainly BASH and SQL. Some PHP also for public site and paiment processor. Installation process should be similar on any debian-like or linux distribution. If you're using MacOs or Windows, just help yourself ;)
 
 ##Steps are :
 
 ###Install a lisk node
 see "https://lisk.io/documentation/lisk-core/setup/binary.html"
+We need this node because many direct SQL request in Postgresql database of the node.
 
 ###Install various softs as sqlite3, php, nginx 
 
@@ -28,15 +29,15 @@ see "https://github.com/thepool-io/lisk-php"
 ### edit or create a hidden file .sqliterc in your home
 with this inside :
 
-.mode column
-.headers on
+	.mode column
+	.headers on
 ### Launch the script 
 
 	bash bash_engine
 When confident, you'd better add a crontab line, like this for every hour each 5:
 
-5 * * * * cd /home/lisk/lisk-basic-pool && /bin/bash /home/lisk/lisk-basic-pool/bash_engine > /home/lisk/lisk-basic-pool/logs.log 2>&1
+5 * * * * cd /home/lisk/NewEraLiskPool && /bin/bash /home/lisk/NewEraLiskPool/bash_engine > /home/lisk/NewEraLiskPool/logs.log 2>&1
 
 ### Public web site
-Install any web server with PHP capabilities (nginx, apache2, etc.)
+Install any web server with PHP module (nginx, apache2, etc.)
 restrict the web site to the directory 'public'
