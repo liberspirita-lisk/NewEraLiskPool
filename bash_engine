@@ -56,19 +56,30 @@ rm $path_pool'voterszeroes.csv'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power *(-1) where delegate in (select distinct substr(publickey,3,100) from zeroes) "
 
 # garnissage voters 
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE from tempo;'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT INTO tempo (address,pending_payouts) SELECT address,pending_payouts from voters'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
-SELECT delegate, username, address, publickey, cast(total(power) as int) FROM voters_raw group by delegate, username, address, publickey'
+						SELECT delegate, username, address, publickey, cast(total(power) as int) FROM voters_raw group by delegate, username, address, publickey '
+
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set pending_payouts = 
+	CASE WHEN (select tempo.address from tempo where tempo.address=voters.address ) IS NULL
+	THEN cast(0.0 as real)
+	ELSE (select tempo.pending_payouts from tempo where tempo.address=voters.address)
+	END"
 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
+
 # Calcul scoring du taulier
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = 
-((100-$tx_redistribution)*0.01) *(select cast(total(scoring)as int)  from voters where address != '$taulier')
+					((100-$tx_redistribution)*0.01) *(select cast(total(scoring)as int)  from voters where address != '$taulier')
 					where address='$taulier' "
 
 # calcul pending_payout
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE voters set pending_payouts = pending_payouts+
-((scoring / (SELECT total(scoring) from voters)) 
-			* ((SELECT total(current_balance) FROM config)
-			-(SELECT total(pending_payouts)  FROM voters)))'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters SET pending_payouts = ((
+						(scoring / (SELECT total(scoring) from voters)) * ( (select current_balance from config)
+						- (select total(pending_payouts) from voters)  )
+                                		)    + pending_payouts) "
+
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite "select date('now') date,time('now') time, rank, current_balance, cast(sum(voters.pending_payouts) as int) pending_payouts from config, voters" 
 cd $path_pool
 /usr/bin/php pay.php

@@ -40,11 +40,11 @@ tx_redistribution='98'
 min_balance='100000000000'
 
 # Cap des whales, en LSK00000000
-cap='100000000000000'
+cap='50000000000000'
 
 # Seuil de paiment
-payout_seuil='210000000'
+payout_seuil='100000000'
 
 # phrase(s) secrète(s) du compte payeur
-secret1="reject grocery diet dawn impose old dad note coral brief wage earth"
+secret1="passphrase1"
 secret2=""

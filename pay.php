@@ -9,18 +9,15 @@ if ($conf_row['rank']<=101) {
 while ($row = $res->fetchArray())  	{
 	$payout=$row['pending_payouts']-$fee;
 	$withdraw=CreateTransaction("{$row['address']}","$payout","{$conf_row['secret1']}",false,false,-10);
-	echo ("{$row['address']}\t$payout\t");
 	$send=SendTransaction(json_encode($withdraw),$server);
-
 	$db->query("UPDATE voters set pending_payouts=pending_payouts-'".$row['pending_payouts']."' WHERE address ='".$row['address']."'; ");
-	echo      ("Paying '".$row['pending_payouts']."' to '".$row['address']."'; \r");
-
+	echo      ("Paying ".($row['pending_payouts']/100000000)." to ".$row['address']." \n");
 	$db->query("UPDATE config set current_balance=current_balance-'".$row['pending_payouts']."'; ");
 
 }} else {
 echo "No payout till not forging, current rank = ".$conf_row['rank']."\n";
 	}
-
+echo "******************************************************";
 $db->close();
 ?>
 

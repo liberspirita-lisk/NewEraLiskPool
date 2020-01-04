@@ -13,12 +13,12 @@ see "https://lisk.io/documentation/lisk-core/setup/binary.html"
 
 ###Install various softs as sqlite3, php, nginx 
 '''sh
-apt-get install sqlite3 php nginx
+	apt-get install sqlite3 php nginx
 
 ###git clone this repository in the home of lisk user, but not in lisk node directory
 '''sh
-git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
-cd NewEraLiskPool
+	git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
+	cd NewEraLiskPool
 
 ###Install lisk-php here, be carefull to install also all its dependencies
 see "https://github.com/thepool-io/lisk-php" 
@@ -30,9 +30,11 @@ with this inside :
 '''sh
 .mode column
 .headers on
-# 
-Des données sont extraites de la base Postgresql utilisée par Lisk,
-puis insérées et remodelées sur une base SQLite
-Le solde du compte pool est évalué, comparé aux paiements en attente de chaque pooler. Puis le reliquat du solde est réparti sur chaque pooler.
+### Launch the script 
+'''sh
+	bash bash_engine
+When confident, you'd better add a crontab line, like this for every hour each 5:
 
-Donc, dans la table 'voters', la colonne 'pending_payouts' est à jour après chaque lancement de pgsql2sqlite.sh. A partir de ça, il reste à automatiser et paramétrer un paiment régulier, puis à forker ou concevoir une interface de monitoring utilisateurs.
+5 * * * * cd /home/lisk/lisk-basic-pool && /bin/bash /home/lisk/lisk-basic-pool/bash_engine > /home/lisk/lisk-basic-pool/logs.log 2>&1
+
+

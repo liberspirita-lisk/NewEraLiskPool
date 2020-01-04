@@ -5,7 +5,11 @@ CREATE TABLE IF NOT EXISTS voters(
 	     address TEXT UNIQUE ,
 	     publickey TEXT UNIQUE,
 	     scoring INTEGER,
-	     pending_payouts INTEGER DEFAULT 0);
+	     pending_payouts REAL DEFAULT 0);
+
+CREATE TABLE IF NOT EXISTS tempo(
+	     address TEXT UNIQUE ,
+	     pending_payouts REAL DEFAULT NULL);
 
 CREATE TABLE IF NOT EXISTS heroes(
 	     username TEXT,
