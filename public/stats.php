@@ -75,7 +75,7 @@ while ($heroes= $h->fetcharray()) {
 $stat_page = $stat_page."</TABLE>";
 
 $stat_page = $stat_page."<TD><TABLE>";
-$z = $db->query('SELECT * from zeroes where rank <= 101 order by rank');
+$z = $db->query('SELECT * from zeroes where rank <= 101 order by rank desc');
 while ($zeroes= $z->fetcharray()) {
 	$stat_page = $stat_page."<TR><TD>#".$zeroes['rank']." ".$zeroes['username']."</TD></TR>";
 		}
