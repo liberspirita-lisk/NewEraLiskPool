@@ -67,7 +67,7 @@ $z = $db->query('SELECT total(pending_payouts) pending_payouts from voters ');
 $zeroes= $pay->fetcharray();
 $stat_page="<TABLE border=4px cellpadding=15><TR><TH>Heroes</TH><TH>Zeroes</TH></TR>";
 $stat_page = $stat_page."<TR><TD><TABLE>";
-$h = $db->query('SELECT * from heroes ');
+$h = $db->query('SELECT * from heroes where rank > 101 order by rank');
 
 while ($heroes= $h->fetcharray()) {
 	$stat_page = $stat_page."<TR><TD>".$heroes['username']."</TD></TR>";
@@ -75,7 +75,7 @@ while ($heroes= $h->fetcharray()) {
 $stat_page = $stat_page."</TABLE>";
 
 $stat_page = $stat_page."<TD><TABLE>";
-$z = $db->query('SELECT * from zeroes ');
+$z = $db->query('SELECT * from zeroes where rank <= 101 order by rank');
 while ($zeroes= $z->fetcharray()) {
 	$stat_page = $stat_page."<TR><TD>".$zeroes['username']."</TD></TR>";
 		}
@@ -90,7 +90,9 @@ echo $stat_page;
 		</div><p><a href="pending_payouts.csv">Download here CSV of pending payouts, as a basic API if you manage a tool for community.</a></p>
 </html> <?php
 $db = new SQLite3('../db_pool');
-$v = $db->query('SELECT * from voters order by pending_payouts desc');
+$conf = $db->query('SELECT * from config limit 1; ');
+$config= $conf->fetcharray();
+$v = $db->query("SELECT * from voters where address != '".$config['address_revenues']."'order by pending_payouts desc");
 $stat_page="<TABLE border=2px cellpadding=1><TR><TH>Address</TH><TH>lisk pending payout</TH></TR>";
 
 while ($voters= $v->fetcharray()) {

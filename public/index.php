@@ -24,7 +24,7 @@
 			<img src="images/logo.png" alt="Img" height="100" width="230">
 			<div>
 				<h1>New era pool for Lisk</h1>
-				<h2>Liberspirita is doing his best for DPOS sanity<br> Coming soon ...</h2>
+				<h2>Liberspirita is doing his best for DPOS sanity.</h2>
 			</div>
 		</div>
 	</div>
@@ -41,9 +41,6 @@
 				<p>
 				Your scoring is increasing or decreasing depending on your votes on <b>Heroes and Zeroes</b>. 
 				</p>
-				<p>
-				Currently coding the pool on testnet, stay tuned. 
-				</p>
 			</div>
 			<div>
 				<p>
@@ -51,12 +48,10 @@
 				</p>
 				<p>
 				Tip 2 : voting all heroes is not required, even if it would maximize your scoring.	
+				Unvoting all zeroes is not required, even if it would maximize your scoring.
 				</p>
 				<p>
-				Tip 3 : unvoting all zeroes is not required, even if it would maximize your scoring.
-				</p>
-				<p>
-				Tip 4 : when not forging, liberspirita will fund NewEra with his own funds. Do not say thank you ... it will be paid only when liberspirita will forge ;)
+				Tip 3 : when not forging, liberspirita will fund NewEra with his own funds. Do not say thank you ... it will be paid only when liberspirita will forge ;)
 				</p>
 			</div>
 		</div>
