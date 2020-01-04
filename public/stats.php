@@ -70,14 +70,14 @@ $stat_page = $stat_page."<TR><TD><TABLE>";
 $h = $db->query('SELECT * from heroes where rank > 101 order by rank');
 
 while ($heroes= $h->fetcharray()) {
-	$stat_page = $stat_page."<TR><TD>".$heroes['username']."</TD></TR>";
+	$stat_page = $stat_page."<TR><TD>#".$heroes['rank']." ".$heroes['username']."</TD></TR>";
 		}
 $stat_page = $stat_page."</TABLE>";
 
 $stat_page = $stat_page."<TD><TABLE>";
 $z = $db->query('SELECT * from zeroes where rank <= 101 order by rank');
 while ($zeroes= $z->fetcharray()) {
-	$stat_page = $stat_page."<TR><TD>".$zeroes['username']."</TD></TR>";
+	$stat_page = $stat_page."<TR><TD>#".$zeroes['rank']." ".$zeroes['username']."</TD></TR>";
 		}
 $stat_page = $stat_page."</TABLE>";
 
