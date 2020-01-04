@@ -93,10 +93,10 @@ $db = new SQLite3('../db_pool');
 $conf = $db->query('SELECT * from config limit 1; ');
 $config= $conf->fetcharray();
 $v = $db->query("SELECT * from voters where address != '".$config['address_revenues']."'order by pending_payouts desc");
-$stat_page="<TABLE border=2px cellpadding=1><TR><TH>Address</TH><TH>lisk pending payout</TH></TR>";
+$stat_page="<TABLE border=2px cellpadding=3><TR><TH>Address</TH><TH>  Scoring  </TH><TH>lisk pending payout</TH></TR>";
 
 while ($voters= $v->fetcharray()) {
-$stat_page = $stat_page."<TR><TD>".$voters['address']."</TD><TD align=right>".number_format($voters['pending_payouts']/100000000,3) ."</TD></TR>";
+$stat_page = $stat_page."<TR><TD>".$voters['address']."</TD><TD align=right>".number_format($voters['scoring']/10000000000,0) ."</TD><TD align=right>".number_format($voters['pending_payouts']/100000000,3) ."</TD></TR>";
 
 }
 $stat_page = $stat_page."</TABLE>";
