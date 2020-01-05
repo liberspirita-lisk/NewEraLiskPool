@@ -1,4 +1,3 @@
-< HEAD
 A new pool for Lisk for a new era of Lisk
 Some BASH, some SQL, some PHP. Very few lines !
 =======
@@ -21,23 +20,26 @@ We need this node because many direct SQL request in Postgresql database of the 
 	git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
 	cd NewEraLiskPool
 
-###Install lisk-php here, be carefull to install also all its dependencies
+####Install lisk-php here, be carefull to install also all its dependencies
 see "https://github.com/thepool-io/lisk-php" 
 
 ## Set your configuration
-###edit the file 'config'
+edit the file 'config'
+
 ### edit or create a hidden file .sqliterc in your home
 with this inside :
 
 	.mode column
 	.headers on
+
 ### Launch the script 
 
 	bash bash_engine
 When confident, you'd better add a crontab line, like this for every hour each 5:
 
-5 * * * * cd /home/lisk/NewEraLiskPool && /bin/bash /home/lisk/NewEraLiskPool/bash_engine > /home/lisk/NewEraLiskPool/logs.log 2>&1
+*5 * * * * cd /home/lisk/NewEraLiskPool && /bin/bash /home/lisk/NewEraLiskPool/bash_engine > /home/lisk/NewEraLiskPool/logs.log 2>&1*
 
 ### Public web site
+I used a basic template downloaded from i don't remember where. Feel free to copy/paste the PHP code to any other web templates.
 Install any web server with PHP module (nginx, apache2, etc.)
 restrict the web site to the directory 'public'
