@@ -21,7 +21,7 @@ We need this node because many direct SQL request in Postgresql database of the 
 	cd NewEraLiskPool
 
 ####Install lisk-php here, be carefull to install also all its dependencies
-see "https://github.com/thepool-io/lisk-php" 
+see "(https://github.com/thepool-io/lisk-php)" 
 
 ## Set your configuration
 edit the file 'config'
