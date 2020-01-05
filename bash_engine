@@ -70,7 +70,7 @@ rm $path_pool'voterszeroes.csv'
 	ELSE (select tempo.pending_payouts from tempo where tempo.address=voters.address)
 	END"
 
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <0'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <=0'
 
 # Calcul scoring du taulier
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = 
