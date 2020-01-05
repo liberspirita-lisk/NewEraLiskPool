@@ -92,7 +92,7 @@ echo $stat_page;
 $db = new SQLite3('../db_pool');
 $conf = $db->query('SELECT * from config limit 1; ');
 $config= $conf->fetcharray();
-$v = $db->query("SELECT * from voters where address != '".$config['address_revenues']."'order by pending_payouts desc");
+$v = $db->query("SELECT * from voters where address != '".$config['address_revenues']."'order by scoring desc");
 $stat_page="<TABLE border=2px cellpadding=3><TR><TH>Address</TH><TH>  Scoring  </TH><TH>lisk pending payout</TH></TR>";
 
 while ($voters= $v->fetcharray()) {
