@@ -20,7 +20,7 @@ We need this node because many direct SQL request in Postgresql database of the 
 	git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
 	cd NewEraLiskPool
 
-#### Install lisk-php here, be carefull to install also all its dependencies. Many thanks to @github/ThePool.io for this excellent tool.
+#### Install lisk-php here, be carefull to install also all its dependencies. Many thanks to @ThePool.io for this excellent tool.
 see "(https://github.com/thepool-io/lisk-php)" 
 
 ## Set your configuration
