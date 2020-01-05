@@ -43,3 +43,8 @@ When confident, you'd better add a crontab line, like this for every hour each 5
 I used a basic template downloaded from i don't remember where. Feel free to copy/paste the PHP code to any other web templates.
 Install any web server with PHP module (nginx, apache2, etc.)
 restrict the web site to the directory 'public'
+
+## Free to use, if ...
+If you want to use this script, no restriction at all. **I am only kindly asking to insert user liberspirita in heroes list**.
+
+This script is working well on testnet "http://clovis.liberspirita.net" and on mainnet "http://newera.liberspirita.net".
