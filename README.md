@@ -5,26 +5,26 @@ Some BASH, some SQL, some PHP. Very few lines !
 # Pré-requis et installation
 This script has been coded and tested on Debian9, using mainly BASH and SQL. Some PHP also for public site and paiment processor. Installation process should be similar on any debian-like or linux distribution. If you're using MacOs or Windows, just help yourself ;)
 
-##Steps are :
+## Steps are :
 
-###Install a lisk node
+### Install a lisk node
 see "https://lisk.io/documentation/lisk-core/setup/binary.html"
 We need this node because many direct SQL request in Postgresql database of the node.
 
-###Install various softs as sqlite3, php, nginx 
+### Install various softs as sqlite3, php, nginx 
 
 	apt-get install sqlite3 php nginx
 
-###git clone this repository in the home of lisk user, but not in lisk node directory
+### git clone this repository in the home of lisk user, but not in lisk node directory.
 
 	git clone https://github.com/liberspirita-lisk/NewEraLiskPool.git
 	cd NewEraLiskPool
 
-####Install lisk-php here, be carefull to install also all its dependencies
+#### Install lisk-php here, be carefull to install also all its dependencies. Many thanks to @github/ThePool.io for this excellent tool.
 see "(https://github.com/thepool-io/lisk-php)" 
 
 ## Set your configuration
-edit the file 'config'
+edit the file 'config'. It should be enought documented to be self explained.
 
 ### edit or create a hidden file .sqliterc in your home
 with this inside :
