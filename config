@@ -53,20 +53,20 @@ pool_delegate='liberspirita'
 taulier='7695675674841127110L'
 
 #taux de redistribution aux poolers
-tx_redistribution='50'
+tx_redistribution='99'
 
 # minimum payout
 payout_seuil='210000000'
 
 # Solde minimum des votants à comptabiliser. En LSK00000000Pour éviter les morts ou dormants.
-min_balance='100000000000'
+min_balance='50000000000'
 
 # cap des whales, en LSK00000000
 cap='10000000000000'
 # Bonus des whales, au dessus du cap. En pourcentage
-cap_above='2'
+cap_above='0.5'
 
 # phrase(s) secrète(s) du compte payeur
-secret1="passphrase"
+secret1="mass victory issue example family match park arctic scrub august rude try"
 secret2=""
 
