@@ -41,7 +41,9 @@ When confident, you'd better add a crontab line, like this for every hour each 5
 
 ## Cautions !
 NewEra is not set to pay *Once every x days* but *once threshold is reached*. 
+
 NewEra does not scan the blocks forged to calcule the pending payouts, but it is paying all the balance available on the account, forged lisk or any lisk transfered on the address. When LIP23 will be launched, a parameter will set how much to leave outside the distribution.
+
 NewEra does not pay any rewards as long as the delegate is not forging. But still it is accumulating pending payouts to voters with lisk sent on it.
 
 ### Public web site
