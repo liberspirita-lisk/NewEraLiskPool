@@ -8,8 +8,8 @@ This script has been coded and tested on Debian9, using mainly BASH and SQL. Som
 ## Steps are :
 
 ### Install a lisk node
-see "https://lisk.io/documentation/lisk-core/setup/binary.html"
-We need this node because many direct SQL request in Postgresql database of the node.
+see https://lisk.io/documentation/lisk-core/setup/binary.html or any other installation method.
+We need this node because many direct SQL request in Postgresql database of the node.I do not know if this will remain possible with Docker installation, i have never used it. But it should be OK with binary, source or lisk:core installation.
 
 ### Install various softs as sqlite3, php, nginx 
 
