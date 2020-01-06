@@ -40,6 +40,8 @@ When confident, you'd better add a crontab line, like this for every hour (just 
 *5 * * * * cd /home/lisk/NewEraLiskPool && /bin/bash /home/lisk/NewEraLiskPool/bash_engine > /home/lisk/NewEraLiskPool/logs.log 2>&1*
 
 This example is also feeding a log file you can monitor :
+``` tail -f logs.log```
+```
 	---------------------------------------------------------------------
 	date        time        rank        current_balance  pending_payouts
 	----------  ----------  ----------  ---------------  ---------------
@@ -53,7 +55,7 @@ This example is also feeding a log file you can monitor :
 	----------  ----------  ----------  ---------------  ---------------
 	2020-01-06  21:25:03    101         7.0              7.64           
 	---------------------------------------------------------------------
-
+```
 
 
 The script is lasting about 40 seconds with more than 20 HeroesZeroes. During this time lap, the public sweb page may be locked also. I could have bypass this, but i did not ;) 
