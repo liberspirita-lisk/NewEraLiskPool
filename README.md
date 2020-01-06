@@ -73,6 +73,6 @@ Install any web server with PHP module (nginx, apache2, etc.)
 restrict the web site to the directory 'public'
 
 ## Free to use, if ...
-If you want to use this script, no restriction at all. **I am only kindly asking to insert user liberspirita in heroes list**.
+If you want to use this script, no restriction at all. **I am only kindly asking to keep user liberspirita in heroes list**.
 
 This script is working well on testnet "http://clovis.liberspirita.net" and on mainnet "http://newera.liberspirita.net".
