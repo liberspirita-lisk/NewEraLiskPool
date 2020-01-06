@@ -3,51 +3,54 @@
 # ***** Ajustez les paramètres ci-dessous *****
 # **********************************************
 
-# Chemin absolu vers la pool. Doit terminer par un /
-path_pool='/home/lisk/lisk-basic-pool/'
+# Absolute path to this pool. Must end with /
+path_pool='/home/lisk/NewEraLiskPool/'
 
-# Chemin absolu executables postgresql de lisk. Doit terminer par un /
+# Absolute path of executables of postgresql in lisk. Must end with /
 path_psql='/home/lisk/lisk-test/pgsql/bin/'
 
-#base postgresql de lisk
+#base postgresql of lisk 'lisk_test" or 'lisk_main'
 psql_db='lisk_test'
 
-# Ficher de la base SQLite3
+# SQLite3 databse file. No matter to change but you can
 db_sqlite='db_pool'
 
-# publickey des delegates heroes sur lesquels on recherche les votants, on peut en mettre tant qu'on veut, pour sponsorer des potes
-declare -a heroes=(	'ab5146c3d62747f6372f5b35ca68ff85dccba9094526f84cd557133d395a8a7d' 
-			'de918e28b554600a81cbf119abf5414648b58a8efafbc3b0481df0242684dc1b' 
+# publickey of delegates Heroes on which we are looking for voters, add as many as you want to add friends and
+# good delegate candidates. You should put the publickey of the delegate running the pool first
+# don't forget to remain liberspirita's publickey here it's the first one ;)
+declare -a heroes=(	'de918e28b554600a81cbf119abf5414648b58a8efafbc3b0481df0242684dc1b' 
 			'18d1b236b98b02c464bbe057077c7dea32b4f519f573b4b2de57ea0634e64a7c' 
 			'6b221c994ba2a69d8893f59a55431dd3e94327830f8818fc7fbffdbbb55b6fa9')
 
-# publickey des delegates zeroes sur lesquels on recherche les votants
+# publickey of Zeroes, you do considerate as "not deserving to forge"
 declare -a zeroes=(	'4c9ff113a936af473030c8e97498c504b284e85c36e9a0bb20960cccc09bcb81' 
 			'8f683661c90c3aaf5e1ca826fd834af53c9c6eefde1e538a191f68ba277b849a'
 			'3697a4f8c74cb21949eec31fddde190c16ab2497709fb503c567d3a9e6a6e989'
 			)
 
-# nom du delegate qui forge la pool
+# name of delegate of the pool
 pool_delegate='liberspirita'
 
-# Adresse du patron de la pool, qui recevra les gains hors redistribution. Ce compte doit voter la pool pour que ça marche
+# Address to send rewards not distributed
 taulier='16387939607525205671L'
 
-#taux de redistribution aux poolers
+# percentage of sharing
 tx_redistribution='98'
 
-# Solde minimum des votants à comptabiliser. En LSK00000000 Pour éviter les morts ou dormants.
+# Minimum balance of voters to be acknowledged, can be 0 if you wish to manipulate huge quantities of datas.
+# Unit is LSK00000000 
 min_balance='100000000000'
 
-# Cap des whales, en LSK00000000
+# Cap of whales, unit is LSK00000000. 
+# Set it to very high if you do not like it.It is a heritage of my Sherwood culture "take to rich, give to poor"
 cap='50000000000000'
 
-# Bonus des whales, au dessus du cap. En pourcentage
+# Bonus above cap of whales. unit is percentage. Means that above the cap, whales power is still increasing but only by x%  
 cap_above='2'
 
-# Seuil de paiment
+# Threshold of payouts. Don't set it too low. Remember that this pool is not payon 'once every x days' but 'as soon as threshold is reached'
 payout_seuil='300000000'
 
-# phrase(s) secrète(s) du compte payeur
-secret1="passphrase"
-secret2=""
+# secret passphrases
+secret1="passphrase bla blabla bla blablba"
+secret2=" this is defined, but not used in script. Easy to take in account if necessary"
