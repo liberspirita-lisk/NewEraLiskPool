@@ -35,9 +35,28 @@ with this inside :
 ### Launch the script 
 
 	bash bash_engine
-When confident, you'd better add a crontab line, like this for every hour each 5:
+When confident, you'd better add a crontab line, like this for every hour (just as an example)
 
 *5 * * * * cd /home/lisk/NewEraLiskPool && /bin/bash /home/lisk/NewEraLiskPool/bash_engine > /home/lisk/NewEraLiskPool/logs.log 2>&1*
+
+This example is also feeding a log file you can monitor :
+	---------------------------------------------------------------------
+	date        time        rank        current_balance  pending_payouts
+	----------  ----------  ----------  ---------------  ---------------
+	2020-01-06  21:20:03    101         11.0             11.7           
+	Paying 1.00052632 to 10431374778810601967L 
+	Paying 1.01476307 to 305922413481072012L 
+	Paying 1.02714097 to 16387939607525205671L 
+	Paying 1.01737876 to 16379340065696424247L 
+	---------------------------------------------------------------------
+	date        time        rank        current_balance  pending_payouts
+	----------  ----------  ----------  ---------------  ---------------
+	2020-01-06  21:25:03    101         7.0              7.64           
+	---------------------------------------------------------------------
+
+
+
+The script is lasting about 40 seconds with more than 20 HeroesZeroes. During this time lap, the public sweb page may be locked also. I could have bypass this, but i did not ;) 
 
 ## Cautions !
 NewEra is not set to pay *Once every x days* but *once threshold is reached*. 
