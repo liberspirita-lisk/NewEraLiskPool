@@ -1,4 +1,6 @@
 <?php
+
+
 function tab_headers()
 {
 	$db = new SQLite3('../db_pool');
@@ -27,6 +29,7 @@ function tab_headers()
 	echo $stat_page;
 
 }
+
 function heroeszeroes()
 {
 $db = new SQLite3('../db_pool');
