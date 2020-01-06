@@ -2,7 +2,7 @@
 
 =======
 
-# Pré-requis et installation
+# Prerequires and installation
 This script has been coded and tested on Debian9, using mainly BASH and SQL. Some PHP also for public site and paiment processor. Installation process should be similar on any debian-like or linux distribution. If you're using MacOs or Windows, just help yourself ;)
 
 ## Steps are :
