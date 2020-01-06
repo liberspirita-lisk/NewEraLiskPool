@@ -1,5 +1,5 @@
-A new pool for Lisk for a new era of Lisk
-Some BASH, some SQL, some PHP. Very few lines !
+# A new pool for Lisk for a new era of Lisk
+
 =======
 
 # Pré-requis et installation
