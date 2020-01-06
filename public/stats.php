@@ -67,7 +67,7 @@ $z = $db->query('SELECT total(pending_payouts) pending_payouts from voters ');
 $zeroes= $pay->fetcharray();
 $stat_page="<TABLE border=4px cellpadding=15><TR><TH>Heroes</TH><TH>Zeroes</TH></TR>";
 $stat_page = $stat_page."<TR><TD><TABLE>";
-$h = $db->query('SELECT * from heroes where rank > 101 order by rank');
+$h = $db->query('SELECT * from heroes where rank >= 1 order by rank');
 
 while ($heroes= $h->fetcharray()) {
 	$stat_page = $stat_page."<TR><TD>#".$heroes['rank']." ".$heroes['username']."</TD></TR>";
@@ -75,7 +75,7 @@ while ($heroes= $h->fetcharray()) {
 $stat_page = $stat_page."</TABLE>";
 
 $stat_page = $stat_page."<TD><TABLE>";
-$z = $db->query('SELECT * from zeroes where rank <= 101 order by rank desc');
+$z = $db->query('SELECT * from zeroes where rank <= 202  order by rank desc');
 while ($zeroes= $z->fetcharray()) {
 	$stat_page = $stat_page."<TR><TD>#".$zeroes['rank']." ".$zeroes['username']."</TD></TR>";
 		}
