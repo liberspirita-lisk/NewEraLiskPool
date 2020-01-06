@@ -68,7 +68,7 @@ NewEra does not scan the blocks forged to calcule the pending payouts, but it is
 NewEra does not pay any rewards as long as the delegate is not forging. But still it is accumulating pending payouts to voters with lisk sent on it.
 
 ### Public web site
-I used a basic template downloaded from i don't remember where. Feel free to copy/paste the PHP code to any other web templates.
+I used a basic template downloaded from i don't remember where. Feel free to copy/paste the PHP code to any other web templates. You may only include the PHP functions from function.php to your own pages. 
 Install any web server with PHP module (nginx, apache2, etc.)
 restrict the web site to the directory 'public'
 
