@@ -49,5 +49,5 @@ cap_above='2'
 payout_seuil='300000000'
 
 # phrase(s) secrète(s) du compte payeur
-secret1="reject grocery diet dawn impose old dad note coral brief wage earth"
+secret1="passphrase"
 secret2=""
