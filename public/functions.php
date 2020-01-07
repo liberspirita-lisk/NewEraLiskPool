@@ -37,7 +37,7 @@ $conf = $db->query('SELECT * from config limit 1; ');
 $config= $conf->fetcharray();
 $h = $db->query('SELECT total(pending_payouts) pending_payouts from voters ');
 $z = $db->query('SELECT total(pending_payouts) pending_payouts from voters ');
-$stat_page="<TABLE border=4px cellpadding=15><TR><TH>Heroes</TH><TH>Zeroes</TH></TR>";
+$stat_page="<TABLE border=4px cellpadding=15 align=center><TR><TH>Heroes</TH><TH>Zeroes</TH></TR>";
 $stat_page = $stat_page."<TR><TD><TABLE>";
 $h = $db->query('SELECT * from heroes where rank >= 1 order by rank');
 while ($heroes= $h->fetcharray()) {
