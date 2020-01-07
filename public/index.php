@@ -56,6 +56,12 @@
 			</div>
 		</div>
 	</div>
+</html>
+<?php
+require('functions.php');
+heroeszeroes();
+?>
+<html>
 <div><table align=center><tr><td align="left"><a href="https://github.com/liberspirita-lisk/NewEraLiskPool" target="blank">GitHub code   </a>   <td><td align="right">                   <a href="https://t.me/liberspirita" target = "blank">Join me on telegram</a></tr></div>
 </body>
 </html>
