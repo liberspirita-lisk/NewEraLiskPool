@@ -1,0 +1,78 @@
+#!/bin/bash
+# **********************************************
+# ***** Ajustez les paramètres ci-dessous *****
+# **********************************************
+
+# Chemin absolu vers la pool. Doit terminer par un /
+path_pool='/home/lisk/NewEraLiskPool/'
+
+# Chemin absolu executables postgresql de lisk. Doit terminer par un /
+path_psql='/home/lisk/lisk-main/pgsql/bin/'
+
+#base postgresql de lisk
+psql_db='lisk_main'
+
+# Ficher de la base SQLite3
+db_sqlite='db_pool'
+
+# publickey des delegates heroes sur lesquels on recherche les votants, on peut en mettre tant qu'on veut, pour sponsorer des potes
+declare -a heroes=(	
+			'4515a9d4360417c43bfde9385f4a3d64f256f221abf2ba855ebfe4d469b22ed3'                                                                                                        
+			'b7feaf9eb93958118fc2e1bf0474bfe022d313bf6006829bcf802796949477df'                                                                                                       
+			'5babff8cbe97834591e27ec2170c4f48a4688fc9057c0939370828683370f449'                                                                                                        
+			'65d5257600c2f5f88adf8349023c77297f4289f2868a326141deedd887b9a967'                                                                                                        
+			'de918e28b554600a81cbf119abf5414648b58a8efafbc3b0481df0242684dc1b'                                                                                                        
+			'7ac57857e9cb61f2057c350cab411d25cd66f81dcb9b076d00d24a79c16bc7c4'                                                                                                        
+			'74e502675f9c13f7c29c3fc8ab9dfae0883a83caa679592e94504a32ae8b8f9c'                                                                                                        
+			'4781cf951f4b2d652cabb823713fc3cccfde7df23d79bc9d854209786fcc23ee'                                                                                                        
+			'48801250bbbedd7fa95cab254536771045720539300203c5cca6e2e4fcf75548'                                                                                                        
+			'14929dac34067d381a9174b96f8d27aece8f5b2a1b7b0d8bdde6bf85c5c4b52d'                                                                                                        
+			'041719e4a0cf7043cd6433442d3ae1816413168c1111162b6c97324df5a2a11a'                                                                                                        
+			'f793017883227f74b202140c9756d67d7b4583b2d0d8c4c348ecd344ffb781fe'                                                                                                        
+			'4240f6f49c0d9fcee869f87ae398f32524ad8f014527314bde54d383ae753f70'
+			)
+
+# publickey des delegates zeroes sur lesquels on recherche les votants
+declare -a zeroes=(	
+		'd9299750eeb71720dda470bccb8fafa57cf13f4939749615642c75a191481dea'
+'e36f75a27598512c2f4ad06fffeeffa37d3aad81c3a4edb77d871ec0ee933471'
+'3cbef15f5e95cdd1e0d8ba4a3c23cac513a42716a9e540818f42146922674678'
+'a81d59b68ba8942d60c74d10bc6488adec2ae1fa9b564a22447289076fe7b1e4'
+'00de7d28ec3f55f42329667f08352d0d90faa3d2d4e62c883d86d1d7b083dd7c'
+'ec111c8ad482445cfe83d811a7edd1f1d2765079c99d7d958cca1354740b7614'
+'b70f1d97cd254e93e2dd7b24567b3dbe06a60b5cbabe3443463c61cb87879b47'
+'76c321881c08b0c2f538abf753044603ab3081f5441fe069c125a6e2803015da'
+'0fec636f5866c66f63a0d3db9b00e3cd5ba1b3a0324712c7935ae845dbfcf58a'
+'226e78386cb6e79aa5005c847b806da1d1d7dc995e3b76945d174b87de3b6099'
+		)
+
+# nom du delegate qui forge la pool
+pool_delegate='liberspirita'
+
+# Adresse du patron de la pool, qui recevra les gains hors redistribution. Ce compte doit voter la pool pour que ça marche
+taulier='7695675674841127110L'
+
+#taux de redistribution aux poolers
+tx_redistribution='99'
+
+# minimum payout
+payout_seuil='210000000'
+
+# Solde minimum des votants à comptabiliser. En LSK00000000Pour éviter les morts ou dormants.
+min_balance='50000000000'
+
+tx_redistribution='98'
+
+
+# Cap des whales, en LSK00000000
+cap='10000000000000'
+
+# Bonus des whales, au dessus du cap. En pourcentage
+cap_above='0.5'
+
+# Minimum balance to preserve on pool account for staking. Unit LSK00000000. Prepare LIP23 compatibility
+staking_balance='1000000000'
+
+# phrase(s) secrète(s) du compte payeur
+secret1="passphrase1"
+secret2="passphrase2 not managed yet in this script, but easy to implement"
