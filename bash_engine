@@ -78,10 +78,12 @@ rm $path_pool'voterszeroes.csv'
 					where address='$taulier' "
 
 # calcul pending_payout
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters SET pending_payouts = ((
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters SET pending_payouts = 
+						max(((
 						(scoring / (SELECT total(scoring) from voters)) * ( ((select current_balance from config) - $staking_balance)
 						- (select total(pending_payouts) from voters)   )
-                                		)    + pending_payouts) "
+						)    + pending_payouts) , pending_payouts)
+						"
 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite "select date('now') date,time('now') time, rank, round(current_balance/100000000,2) current_balance, round(total(voters.pending_payouts)/100000000,2) pending_payouts from config, voters" 
 cd $path_pool
