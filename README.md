@@ -1,15 +1,15 @@
-A new pool for Lisk for a new era of Lisk
-Some BASH, some SQL, some PHP. Very few lines !
+# A new pool for Lisk for a new era of Lisk
+
 =======
 
-# Pré-requis et installation
+# Prerequires and installation
 This script has been coded and tested on Debian9, using mainly BASH and SQL. Some PHP also for public site and paiment processor. Installation process should be similar on any debian-like or linux distribution. If you're using MacOs or Windows, just help yourself ;)
 
 ## Steps are :
 
 ### Install a lisk node
-see "https://lisk.io/documentation/lisk-core/setup/binary.html"
-We need this node because many direct SQL request in Postgresql database of the node.
+see https://lisk.io/documentation/lisk-core/setup/binary.html or any other installation method.
+We need this node because many direct SQL request in Postgresql database of the node.I do not know if this will remain possible with Docker installation, i have never used it. But it should be OK with binary, source or lisk:core installation.
 
 ### Install various softs as sqlite3, php, nginx 
 
@@ -35,16 +35,44 @@ with this inside :
 ### Launch the script 
 
 	bash bash_engine
-When confident, you'd better add a crontab line, like this for every hour each 5:
+When confident, you'd better add a crontab line, like this for every hour (just as an example)
 
 *5 * * * * cd /home/lisk/NewEraLiskPool && /bin/bash /home/lisk/NewEraLiskPool/bash_engine > /home/lisk/NewEraLiskPool/logs.log 2>&1*
 
+This example is also feeding a log file you can monitor :
+``` tail -f logs.log```
+```
+	---------------------------------------------------------------------
+	date        time        rank        current_balance  pending_payouts
+	----------  ----------  ----------  ---------------  ---------------
+	2020-01-06  21:20:03    101         11.0             11.7           
+	Paying 1.00052632 to 10431374778810601967L 
+	Paying 1.01476307 to 305922413481072012L 
+	Paying 1.02714097 to 16387939607525205671L 
+	Paying 1.01737876 to 16379340065696424247L 
+	---------------------------------------------------------------------
+	date        time        rank        current_balance  pending_payouts
+	----------  ----------  ----------  ---------------  ---------------
+	2020-01-06  21:25:03    101         7.0              7.64           
+	---------------------------------------------------------------------
+```
+
+
+The script is lasting about 40 seconds with more than 20 HeroesZeroes. During this time lap, the public sweb page may be locked also. I could have bypass this, but i did not ;) 
+
+## Cautions !
+NewEra is not set to pay *Once every x days* but *once threshold is reached*. 
+
+NewEra does not scan the blocks forged to calcule the pending payouts, but it is paying all the balance available on the account, forged lisk or any lisk transfered on the address. When LIP23 will be launched, a parameter will set how much to leave outside the distribution.
+
+NewEra does not pay any rewards as long as the delegate is not forging. But still it is accumulating pending payouts to voters with lisk sent on it.
+
 ### Public web site
-I used a basic template downloaded from i don't remember where. Feel free to copy/paste the PHP code to any other web templates.
+I used a basic template downloaded from i don't remember where. Feel free to copy/paste the PHP code to any other web templates. You may only include the PHP functions from function.php to your own pages. 
 Install any web server with PHP module (nginx, apache2, etc.)
 restrict the web site to the directory 'public'
 
 ## Free to use, if ...
-If you want to use this script, no restriction at all. **I am only kindly asking to insert user liberspirita in heroes list**.
+If you want to use this script, no restriction at all. **I am only kindly asking to keep user liberspirita in heroes list**.
 
 This script is working well on testnet "http://clovis.liberspirita.net" and on mainnet "http://newera.liberspirita.net".
