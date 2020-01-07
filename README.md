@@ -24,7 +24,7 @@ We need this node because many direct SQL request in Postgresql database of the 
 see "(https://github.com/thepool-io/lisk-php)" 
 
 ## Set your configuration
-edit the file 'config'. It should be enought documented to be self explained.
+edit the file 'config.SAV' and rename it to 'config'. It should be enought documented to be self explained.
 
 ### edit or create a hidden file .sqliterc in your home
 with this inside :
