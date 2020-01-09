@@ -21,7 +21,7 @@
 	</div>
 	<div id="header">
 		<div class="clearfix">
-			<img src="images/logo.png" alt="Img" height="100" width="230">
+			<img src="images/logo.png" alt="Img" height="100" width="250">
 			<div>
 				<h1>New era pool for Lisk</h1>
 				<h2>Liberspirita is doing his best for DPOS sanity.</h2>

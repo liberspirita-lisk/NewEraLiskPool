@@ -21,7 +21,8 @@
 	</div>
         <div id="header">
                 <div class="clearfix">
-                        <img src="images/logo.png" alt="Img" height="100" width="230">
+			<img src="images/logo.png" alt="Img" height="100" width="250">
+			<h1> 100% ready for LIP23 !</h1>
                 </div>
         </div>
 
