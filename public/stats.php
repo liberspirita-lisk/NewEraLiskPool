@@ -36,7 +36,7 @@ require('functions.php');
 tab_headers();
 ?> <html>
 		<div><br><br>
-			<h1>List of Heroes Zeroes</h1>
+			<h1>List of Goods Bads</h1>
 			</html> 
 <?php
 //require('functions.php');

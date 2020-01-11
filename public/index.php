@@ -39,7 +39,7 @@
 				Liberspirita is calculating a <b>scoring</b> with your votes. The first parameter is obviously your weight, but it's not the most important.
 				</p>
 				<p>
-				Your scoring is increasing or decreasing depending on your votes on <b>Heroes and Zeroes</b>. 
+				Your scoring is increasing or decreasing depending on your votes on <b>Goods and Bads</b>. 
 				</p>
 			</div>
 			<div>
@@ -47,8 +47,8 @@
 				Tip 1 : voting on Liberspirita himself is not required for accumulating rewards. But recommended till the pending payouts will only be paid when liberspirita will forge.	
 				</p>
 				<p>
-				Tip 2 : voting all heroes is not required, even if it would maximize your scoring.	
-				Unvoting all zeroes is not required, even if it would maximize your scoring.
+				Tip 2 : voting all Goods is not required, even if it would maximize your scoring.	
+				Unvoting all Bads is not required, even if it would maximize your scoring.
 				</p>
 				<p>
 				Tip 3 : when not forging, liberspirita will fund NewEra with his own funds. Do not say thank you ... it will be paid only when liberspirita will forge ;)
