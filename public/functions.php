@@ -81,7 +81,7 @@ function vote_report()
 $conf = $db->query('SELECT * from config limit 1; ');
 $config= $conf->fetcharray();
 $h = $db->query('SELECT total(pending_payouts) pending_payouts from voters ');
-$stat_page="<TABLE border=4px cellpadding=15 align=center><TR><TH bgcolor=green>Votes on Heroes<br>perfect if all green</TH><TH bgcolor=red>Votes on Zeroes<br>perfect if all white</TH></TR>";
+$stat_page="<TABLE border=4px cellpadding=15 align=center><TR><TH bgcolor=green>Votes on Goods<br>perfect if all green</TH><TH bgcolor=red>Votes on Bads<br>perfect if all white</TH></TR>";
 $stat_page = $stat_page."<TR><TD><TABLE>";
 $h = $db->query('SELECT substr(publickey,3,100) publickey, address, rank, username from heroes where rank >= 1 order by rank');
 while ($heroes= $h->fetcharray()) {
