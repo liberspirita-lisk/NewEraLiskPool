@@ -16,6 +16,10 @@
 				<li>
 					<a href="stats.php">Figures</a>
 				</li>
+                                <li>
+                                        <a href="adds/delegates_classification.php">Delegates</a>
+                                </li>
+
 			</ul>
 		</div>
 	</div>
