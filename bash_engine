@@ -62,15 +62,16 @@ rm $path_pool'voterszeroes.csv'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
 						SELECT delegate, username, address, publickey, cast(total(power) as real) FROM voters_raw group by delegate, username, address, publickey '
 
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE voters SET scoring = (SELECT cast(total(power) as real) from voters_raw where voters_raw.address=voters.address)'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters SET scoring = (SELECT cast(total(power) as real) from voters_raw where voters_raw.address=voters.address) where address != '$taulier'"
 
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set pending_payouts = 
 	CASE WHEN (select tempo.address from tempo where tempo.address=voters.address ) IS NULL
 	THEN cast(0.0 as real)
 	ELSE (select tempo.pending_payouts from tempo where tempo.address=voters.address)
-	END"
+	END
+	"
 
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE FROM voters WHERE address not in (select address from voters_raw) or scoring <=0'
+	/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "DELETE FROM voters WHERE address != '$taulier' and  (address not in (select address from voters_raw) or scoring <=0 )"
 
 # Calcul scoring du taulier
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters set scoring = 
