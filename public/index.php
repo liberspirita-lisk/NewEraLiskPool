@@ -19,12 +19,15 @@
                                 <li>
                                         <a href="adds/delegates_classification.php">Delegates</a>
                                 </li>
+                                <li>
+                                        <a href="blog/">Blog</a>
+                                </li>
 			</ul>
 		</div>
 	</div>
 	<div id="header">
 		<div class="clearfix">
-			<img src="images/logo.png" alt="Img" height="100" width="250">
+			<img src="images/logo.png" alt="Img" >
 			<div>
 				<h1>New era pool for Lisk</h1>
 				<h2>Liberspirita is doing his best for DPOS sanity.</h2>

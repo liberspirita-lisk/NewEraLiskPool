@@ -18,7 +18,11 @@
 				</li>
                                 <li>
                                         <a href="adds/delegates_classification.php">Delegates</a>
+				</li>
+                                <li>
+                                        <a href="blog/">Blog</a>
                                 </li>
+
 
 			</ul>
 		</div>
