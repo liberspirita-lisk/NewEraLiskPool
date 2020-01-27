@@ -58,10 +58,16 @@ function stats()
 $conf = $db->query('SELECT * from config limit 1; ');
 $config= $conf->fetcharray();
 $v = $db->query("SELECT * from voters where address != '".$config['address_revenues']."'order by scoring desc");
-$stat_page="<TABLE border=2px cellpadding=3><TR><TH>Address</TH><TH>  Scoring  </TH><TH>lisk pending payout</TH></TR>";
+$stat_page="<TABLE border=2px cellpadding=3><TR><TH>Address</TH><tH>power</TH><TH>  Scoring  </TH><TH>lisk pending payout</TH></TR>";
 
 while ($voters= $v->fetcharray()) {
-	$stat_page = $stat_page."<TR><TD><a href=\"vote_report.php?a=".$voters['address']."\">".$voters['address']."</a> </TD><TD align=right>".number_format($voters['scoring']/10000000000,0) ."</TD><TD align=right>".number_format($voters['pending_payouts']/100000000,3) ."</TD></TR>";
+
+$x = $db->query("select distinct power from tempo where address = '".$voters['address']."' and power > 0 limit 1");
+$power= $x->fetcharray();
+	$stat_page = $stat_page."<TR><TD><a href=\"vote_report.php?a=".$voters['address']."\">".$voters['address']."</a> </TD>
+				<TD align=right>".number_format($power['power']/100000000,0)."</TD>
+				<TD align=right>".number_format($voters['scoring']/10000000000,0) ."</TD>
+				<TD align=right>".number_format($voters['pending_payouts']/100000000,3) ."</TD></TR>";
 
 }
 $stat_page = $stat_page."</TABLE>";

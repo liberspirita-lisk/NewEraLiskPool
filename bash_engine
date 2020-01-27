@@ -49,6 +49,10 @@ rm $path_pool'voterszeroes.csv'
 		, $payout_seuil
 		, '$secret1', '$secret2')"
 
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE from tempo;'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT INTO tempo (address,pending_payouts) SELECT address,pending_payouts from voters'
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'UPDATE tempo SET power = (select distinct power from voters_raw where
+			tempo.address=voters_raw.address and power > 0 limit 1)'
 # plafonnement comptes poolers
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw SET power = min(power,  $cap+( power * $cap_above  /100 )) "
 
@@ -57,8 +61,6 @@ rm $path_pool'voterszeroes.csv'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  "UPDATE voters_raw  set power = power /1  where delegate in (select distinct substr(publickey,3,100) from heroes) "
 
 # garnissage voters 
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'DELETE from tempo;'
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT INTO tempo (address,pending_payouts) SELECT address,pending_payouts from voters'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite  'INSERT or REPLACE  INTO voters (delegate, username, address, publickey, scoring)
 						SELECT delegate, username, address, publickey, cast(total(power) as real) FROM voters_raw group by delegate, username, address, publickey '
 
