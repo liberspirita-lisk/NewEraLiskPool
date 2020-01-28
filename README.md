@@ -1,4 +1,5 @@
 # A new pool for Lisk for a new era of Lisk
+see this pool running on http://NewEra.liberspirita.net
 
 =======
 
