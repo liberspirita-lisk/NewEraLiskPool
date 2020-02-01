@@ -2,7 +2,7 @@
 require_once('./lisk-php/main.php');
 $fee=10000000;
 $db = new SQLite3('db_pool');
-$conf = $db->query('SELECT * from config limit 1; ');
+$conf = $db->query('SELECT * from config where rank>0 limit 1; ');
 $conf_row= $conf->fetcharray();
 $res = $db->query("SELECT address, cast(pending_payouts as int) pending_payouts from voters where pending_payouts>". $conf_row['payout_seuil']." ; ");
 if ($conf_row['rank']<=101) {
