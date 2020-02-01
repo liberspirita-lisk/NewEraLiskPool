@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS voters(
 
 CREATE TABLE IF NOT EXISTS tempo(
 	     address TEXT UNIQUE ,
-	     pending_payouts REAL DEFAULT NULL);
+	     pending_payouts REAL DEFAULT NULL,
+	     power  INTEGER UNIQUE DEFAULT 0);
 
 CREATE TABLE IF NOT EXISTS heroes(
 	     username TEXT,
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS zeroes(
 	    );
 
 CREATE TABLE IF NOT EXISTS config(
-	delegate TEXT, 
+	delegate TEXT UNIQUE, 
 	address TEXT UNIQUE,
 	publickey TEXT UNIQUE,
 	rank INTEGER,
