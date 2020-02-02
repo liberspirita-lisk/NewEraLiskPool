@@ -69,5 +69,5 @@ secret2=""
 # if reward was 50% initially, it will become 33% in such example
 # in another example where external votes are only 500
 # new %reward becomes 100%
-lip23_dynamic_reward = 1 	# 0=false 1=true
+lip23dynamicreward = 1 	# 0=false 1=true
 
