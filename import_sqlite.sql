@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS config(
 	current_balance INTEGER,
 	payout_seuil REAL,
 	secret1 TEXT,
-	secret2 TEXT
+	secret2 TEXT,
+	dispo REAL 
 	);
 
 

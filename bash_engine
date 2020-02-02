@@ -39,7 +39,9 @@ rm $path_pool'voterszeroes.csv'
 
 # Ganissage tables
 # table config
-/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "INSERT or REPLACE INTO config (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance,payout_seuil, secret1,secret2) 
+
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "DELETE from config ;"
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite  "INSERT or REPLACE INTO config  (delegate, address, publickey,rank,address_revenues,path_pool,path_psql, psql_db,  tx_redistribution, min_balance, db_sqlite, current_balance,payout_seuil, secret1,secret2) 
 		VALUES ('$pool_delegate'
 		, (SELECT address from heroes where heroes.username='$pool_delegate')
 		, substr((SELECT publickey from heroes where heroes.username='$pool_delegate'),3,100)
@@ -91,4 +93,5 @@ rm $path_pool'voterszeroes.csv'
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite "select date('now') date,time('now') time, rank, round(current_balance/100000000,2) current_balance, round(total(voters.pending_payouts)/100000000,2) pending_payouts from config, voters" 
 cd $path_pool
 /usr/bin/sqlite3 -batch $path_pool$db_sqlite < $path_pool"api_basic.sql" > public/pending_payouts.csv
+/usr/bin/sqlite3 -batch $path_pool$db_sqlite "update config set dispo = current_balance - $staking_balance -(select sum(pending_payouts) from voters)" 
 /usr/bin/php pay.php
